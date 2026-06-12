@@ -48,11 +48,11 @@ export default function HomeContent(){
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {SERVICES.map((s,i)=>(
-              <Link key={s.title} href={s.href} style={{textDecoration:"none"}}>
-                <div className={`feat-card wow fadeInUp d${(i%3)+1}`} style={{cursor:"pointer"}}>
+              <Link key={s.title} href={s.href} style={{textDecoration:"none",display:"flex",flexDirection:"column"}}>
+                <div className={`feat-card wow fadeInUp d${(i%3)+1}`} style={{cursor:"pointer",flex:1,display:"flex",flexDirection:"column"}}>
                   <div className="feat-icon">{s.icon}</div>
                   <h3>{s.title}</h3>
-                  <p>{s.desc}</p>
+                  <p style={{flex:1}}>{s.desc}</p>
                   <div style={{marginTop:"16px",fontSize:"11px",fontWeight:700,color:"var(--accent)",letterSpacing:"0.1em",textTransform:"uppercase",fontFamily:"'Inter',sans-serif"}}>Learn More →</div>
                 </div>
               </Link>
