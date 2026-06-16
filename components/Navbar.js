@@ -40,12 +40,14 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <Link href="/contact" className="btn-primary hidden md:inline-block"
-            style={{ padding:"10px 22px", fontSize:"11px", textDecoration:"none" }}>
-            Get in Touch
-          </Link>
+          <div className="hidden md:block">
+            <Link href="/contact" className="btn-primary"
+              style={{ padding:"10px 22px", fontSize:"11px", textDecoration:"none" }}>
+              Get in Touch
+            </Link>
+          </div>
 
-          <button className="md:hidden" onClick={()=>setOpen(true)}
+          <button className="md:hidden" onClick={()=>setOpen(o=>!o)}
             style={{ background:"none", border:"1px solid rgba(99,102,241,0.4)", color:"#6366f1", padding:"6px 14px", fontSize:"11px", cursor:"pointer", borderRadius:"4px", fontFamily:"'Inter',sans-serif" }}>
             ☰
           </button>

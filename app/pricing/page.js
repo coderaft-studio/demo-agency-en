@@ -9,17 +9,17 @@ const PricingContent=dynamic(()=>import("./PricingContent"),{ssr:false,loading:(
 export default function PricingPage(){
   useAnimateOnScroll();
   return(
-    <>
+    <div style={{overflowX:"hidden"}}>
       <Navbar/>
       <section className="ax-hero" style={{backgroundImage:`url(${IMGS.hero3})`,minHeight:"50vh"}}>
         <div className="ax-hero-overlay"/>
-        <div style={{maxWidth:"1200px",margin:"0 auto",padding:"0 24px",position:"relative",zIndex:1,paddingTop:"80px",width:"100%",textAlign:"center"}}>
+        <div style={{maxWidth:"1200px",margin:"0 auto",padding:"0 24px",position:"relative",zIndex:1,paddingTop:"80px",textAlign:"center"}}>
           <p className="wow fadeInUp" style={{fontSize:"13px",fontWeight:600,letterSpacing:"0.2em",textTransform:"uppercase",color:"var(--accent)",marginBottom:"16px"}}>Transparent Pricing</p>
           <h1 className="wow fadeInUp d1" style={{fontFamily:"'Inter',sans-serif",fontSize:"clamp(36px,5.5vw,64px)",fontWeight:800,lineHeight:1.15,color:"#f8fafc",marginBottom:"16px"}}><span style={{background:"var(--grad)",WebkitBackgroundClip:"text",WebkitTextFillColor:"transparent"}}>Simple</span>, Clear Pricing</h1>
           <p className="wow fadeInUp d2" style={{fontSize:"16px",lineHeight:1.7,color:"rgba(248,250,252,0.65)",maxWidth:"480px",margin:"0 auto"}}>No hidden fees. No surprises. Just honest pricing for excellent work.</p>
         </div>
       </section>
       <PricingContent/>
-    </>
+    </div>
   );
 }

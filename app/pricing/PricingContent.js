@@ -45,24 +45,24 @@ export default function PricingContent(){
   useAnimateOnScroll(150);
   const [annual,setAnnual]=useState(false);
   return(
-    <>
+    <div style={{overflowX:"hidden"}}>
       {/* Plans */}
-      <section style={{padding:"100px 0",background:"linear-gradient(180deg,#0a0f1e 0%,#111827 50%,#0a0f1e 100%)",position:"relative",overflow:"hidden"}}>
+      <section style={{padding:"80px 0",background:"linear-gradient(180deg,#0a0f1e 0%,#111827 50%,#0a0f1e 100%)",position:"relative",overflow:"hidden"}}>
         <div style={{position:"absolute",top:"50%",left:"50%",transform:"translate(-50%,-50%)",width:"600px",height:"400px",background:"radial-gradient(ellipse,rgba(99,102,241,0.07),transparent 70%)",pointerEvents:"none"}}/>
         <div style={{maxWidth:"1100px",margin:"0 auto",padding:"0 24px",position:"relative"}}>
 
           {/* Toggle */}
-          <div style={{display:"flex",justifyContent:"center",alignItems:"center",gap:"12px",marginBottom:"56px"}} className="wow fadeInUp">
+          <div className="wow fadeInUp flex flex-wrap justify-center items-center gap-3" style={{marginBottom:"56px"}}>
             <span style={{fontSize:"13px",fontWeight:600,color:!annual?"#f8fafc":"var(--muted)",fontFamily:"'Inter',sans-serif"}}>Monthly</span>
             <button onClick={()=>setAnnual(!annual)}
-              style={{width:"48px",height:"26px",borderRadius:"13px",background:annual?"var(--grad)":"rgba(255,255,255,0.15)",border:"none",cursor:"pointer",position:"relative",transition:"background .3s"}}>
+              style={{width:"48px",height:"26px",borderRadius:"13px",background:annual?"var(--grad)":"rgba(255,255,255,0.15)",border:"none",cursor:"pointer",position:"relative",transition:"background .3s",flexShrink:0}}>
               <span style={{position:"absolute",top:"3px",left:annual?"22px":"3px",width:"20px",height:"20px",borderRadius:"50%",background:"#fff",transition:"left .3s"}}/>
             </button>
             <span style={{fontSize:"13px",fontWeight:600,color:annual?"#f8fafc":"var(--muted)",fontFamily:"'Inter',sans-serif"}}>Annual</span>
             {annual&&<span style={{fontSize:"11px",fontWeight:700,color:"var(--accent)",background:"rgba(99,102,241,0.1)",border:"1px solid rgba(99,102,241,0.2)",padding:"3px 10px",borderRadius:"20px"}}>Save 15%</span>}
           </div>
 
-          <div style={{display:"grid",gridTemplateColumns:"repeat(3,1fr)",gap:"24px",alignItems:"stretch"}}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch" style={{overflow:"hidden",padding:"4px"}}>
             {PLANS.map((plan,i)=>{
               const isF=plan.featured;
               const price=typeof plan.price.monthly==="number" ? (annual ? `$${plan.price.annual.toLocaleString()}` : `$${plan.price.monthly.toLocaleString()}`) : "Custom";
@@ -71,20 +71,19 @@ export default function PricingContent(){
                   style={{position:"relative",borderRadius:"20px",overflow:"hidden",
                     background:isF?"linear-gradient(145deg,#1a1f3a,#141830)":"rgba(255,255,255,0.03)",
                     border:isF?"1px solid rgba(99,102,241,0.5)":"1px solid rgba(255,255,255,0.08)",
-                    boxShadow:isF?"0 0 80px rgba(99,102,241,0.15),inset 0 1px 0 rgba(99,102,241,0.2)":"none",
-                    transform:isF?"translateY(-16px)":"none",
+                    boxShadow:isF?"0 0 40px rgba(99,102,241,0.2),inset 0 1px 0 rgba(99,102,241,0.2)":"none",
                     display:"flex",flexDirection:"column"}}>
                   <div style={{height:"4px",background:isF?"var(--grad)":"rgba(255,255,255,0.07)"}}/>
                   <div style={{padding:"32px 28px 28px",display:"flex",flexDirection:"column",flex:1}}>
                     {plan.badge&&<div style={{display:"inline-flex",alignItems:"center",gap:"6px",fontSize:"9px",fontWeight:800,letterSpacing:"0.15em",textTransform:"uppercase",color:G,background:"rgba(99,102,241,0.12)",border:"1px solid rgba(99,102,241,0.25)",padding:"5px 14px",borderRadius:"20px",marginBottom:"20px",width:"fit-content"}}>🔥 {plan.badge}</div>}
                     <div style={{display:"flex",alignItems:"center",gap:"12px",marginBottom:"20px"}}>
-                      <div style={{width:"44px",height:"44px",borderRadius:"10px",background:isF?"var(--grad)":"rgba(99,102,241,0.1)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"20px"}}>{plan.icon}</div>
+                      <div style={{width:"44px",height:"44px",borderRadius:"10px",background:isF?"var(--grad)":"rgba(99,102,241,0.1)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"20px",flexShrink:0}}>{plan.icon}</div>
                       <div style={{fontSize:"11px",fontWeight:800,letterSpacing:"0.2em",textTransform:"uppercase",color:isF?G:"rgba(248,250,252,0.45)",fontFamily:"'Inter',sans-serif"}}>{plan.name}</div>
                     </div>
                     <div style={{marginBottom:"24px",paddingBottom:"24px",borderBottom:`1px solid ${isF?"rgba(99,102,241,0.15)":"rgba(255,255,255,0.06)"}`}}>
                       <div style={{display:"flex",alignItems:"flex-end",gap:"4px",lineHeight:1}}>
                         {price!=="Custom"&&<span style={{fontSize:"18px",fontWeight:400,color:"rgba(248,250,252,0.5)",paddingBottom:"8px"}}>$</span>}
-                        <span style={{fontSize:price==="Custom"?"42px":"52px",fontWeight:100,color:"#f8fafc",fontFamily:"'Inter',sans-serif"}}>{price==="Custom"?"Custom":price.replace("$","")}</span>
+                        <span style={{fontSize:price==="Custom"?"36px":"44px",fontWeight:100,color:"#f8fafc",fontFamily:"'Inter',sans-serif"}}>{price==="Custom"?"Custom":price.replace("$","")}</span>
                         <span style={{fontSize:"12px",color:"rgba(248,250,252,0.4)",paddingBottom:"8px",paddingLeft:"2px"}}>/ {plan.period}</span>
                       </div>
                       {isF&&annual&&<p style={{fontSize:"11px",color:"rgba(99,102,241,0.8)",marginTop:"8px",fontFamily:"'Inter',sans-serif"}}>💡 You're saving $400 with annual</p>}
@@ -124,21 +123,23 @@ export default function PricingContent(){
             <div className="tag">Compare Plans</div>
             <h2>Full Feature Comparison</h2>
           </div>
-          <div className="wow fadeInUp" style={{borderRadius:"16px",overflow:"hidden",border:"1px solid rgba(255,255,255,0.08)"}}>
-            <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",background:"rgba(99,102,241,0.08)",padding:"16px 24px",borderBottom:"1px solid rgba(255,255,255,0.08)"}}>
-              <div style={{fontSize:"11px",fontWeight:700,color:"var(--muted)",letterSpacing:"0.15em",textTransform:"uppercase"}}>Feature</div>
-              {["Starter","Business","Enterprise"].map((p,i)=>(
-                <div key={p} style={{textAlign:"center",fontSize:"12px",fontWeight:800,color:i===1?"var(--accent)":"rgba(248,250,252,0.7)",fontFamily:"'Inter',sans-serif",letterSpacing:"0.1em",textTransform:"uppercase"}}>{p}</div>
-              ))}
-            </div>
-            {COMPARE_FEATURES.map((row,i)=>(
-              <div key={row.label} style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",padding:"14px 24px",borderBottom:"1px solid rgba(255,255,255,0.05)",background:i%2===0?"transparent":"rgba(255,255,255,0.02)"}}>
-                <div style={{fontSize:"13px",color:"var(--muted)"}}>{row.label}</div>
-                {[row.starter,row.business,row.enterprise].map((val,j)=>(
-                  <div key={j} style={{textAlign:"center",fontSize:"13px",color:val==="✓"?"var(--accent)":val==="✗"?"rgba(248,250,252,0.25)":j===1?"rgba(248,250,252,0.9)":"rgba(248,250,252,0.6)",fontWeight:val==="✓"||val==="✗"?"700":"400"}}>{val}</div>
+          <div className="wow fadeInUp" style={{borderRadius:"16px",overflow:"hidden",border:"1px solid rgba(255,255,255,0.08)",overflowX:"auto"}}>
+            <div style={{minWidth:"480px"}}>
+              <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",background:"rgba(99,102,241,0.08)",padding:"16px 24px",borderBottom:"1px solid rgba(255,255,255,0.08)"}}>
+                <div style={{fontSize:"11px",fontWeight:700,color:"var(--muted)",letterSpacing:"0.15em",textTransform:"uppercase"}}>Feature</div>
+                {["Starter","Business","Enterprise"].map((p,i)=>(
+                  <div key={p} style={{textAlign:"center",fontSize:"12px",fontWeight:800,color:i===1?"var(--accent)":"rgba(248,250,252,0.7)",fontFamily:"'Inter',sans-serif",letterSpacing:"0.1em",textTransform:"uppercase"}}>{p}</div>
                 ))}
               </div>
-            ))}
+              {COMPARE_FEATURES.map((row,i)=>(
+                <div key={row.label} style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr 1fr",padding:"14px 24px",borderBottom:"1px solid rgba(255,255,255,0.05)",background:i%2===0?"transparent":"rgba(255,255,255,0.02)"}}>
+                  <div style={{fontSize:"13px",color:"var(--muted)"}}>{row.label}</div>
+                  {[row.starter,row.business,row.enterprise].map((val,j)=>(
+                    <div key={j} style={{textAlign:"center",fontSize:"13px",color:val==="✓"?"var(--accent)":val==="✗"?"rgba(248,250,252,0.25)":j===1?"rgba(248,250,252,0.9)":"rgba(248,250,252,0.6)",fontWeight:val==="✓"||val==="✗"?"700":"400"}}>{val}</div>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -160,13 +161,13 @@ export default function PricingContent(){
       <section className="cta-section wow fadeIn" style={{backgroundImage:`url(${IMGS.ctaBg})`}}>
         <div className="overlay"/>
         <div style={{maxWidth:"600px",margin:"0 auto",padding:"0 24px",position:"relative",zIndex:1,textAlign:"center"}}>
-          <h2 className="wow fadeInUp" style={{fontFamily:"'Inter',sans-serif",fontSize:"clamp(28px,4vw,44px)",fontWeight:800,color:"#f8fafc",marginBottom:"16px"}}>Not Sure Which Plan?</h2>
+          <h2 className="wow fadeInUp" style={{fontFamily:"'Inter',sans-serif",fontSize:"clamp(24px,4vw,44px)",fontWeight:800,color:"#f8fafc",marginBottom:"16px"}}>Not Sure Which Plan?</h2>
           <p className="wow fadeInUp d1" style={{fontSize:"16px",color:"rgba(248,250,252,0.7)",marginBottom:"28px",lineHeight:1.7}}>Book a free 30-minute call. We'll assess your needs and recommend the right approach — honestly.</p>
           <Link href="/contact" className="btn-primary wow fadeInUp d2" style={{textDecoration:"none"}}>Book Free Consultation</Link>
         </div>
       </section>
       <Footer/>
-    </>
+    </div>
   );
 }
 

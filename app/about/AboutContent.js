@@ -102,7 +102,8 @@ export default function AboutContent(){
             <div className="tag">Our Journey</div>
             <h2>How We Got Here</h2>
           </div>
-          <div style={{position:"relative"}}>
+          {/* Desktop: alternating */}
+          <div className="hidden md:block" style={{position:"relative"}}>
             <div style={{position:"absolute",left:"50%",top:0,bottom:0,width:"1px",background:"rgba(99,102,241,0.2)",transform:"translateX(-50%)"}}/>
             {TIMELINE.map((item,i)=>{
               const isLeft=i%2===0;
@@ -117,6 +118,19 @@ export default function AboutContent(){
                 </div>
               );
             })}
+          </div>
+          {/* Mobile: single column */}
+          <div className="flex flex-col gap-4 md:hidden">
+            {TIMELINE.map((item,i)=>(
+              <div key={item.year} className="wow fadeInUp" style={{display:"flex",gap:"12px",alignItems:"flex-start"}}>
+                <div style={{flexShrink:0,width:"32px",height:"32px",borderRadius:"50%",background:"var(--grad)",display:"flex",alignItems:"center",justifyContent:"center",fontSize:"11px",fontWeight:800,color:"#fff",fontFamily:"'Inter',sans-serif",marginTop:"4px"}}>{i+1}</div>
+                <div style={{flex:1,padding:"16px 20px",background:"rgba(99,102,241,0.05)",border:"1px solid rgba(99,102,241,0.15)",borderRadius:"12px"}}>
+                  <div style={{fontSize:"11px",fontWeight:800,letterSpacing:"0.2em",color:"var(--accent)",marginBottom:"6px"}}>{item.year}</div>
+                  <h3 style={{fontFamily:"'Inter',sans-serif",fontSize:"16px",fontWeight:700,color:"#f8fafc",marginBottom:"6px"}}>{item.title}</h3>
+                  <p style={{color:"var(--muted)",fontSize:"14px",lineHeight:1.7,margin:0}}>{item.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

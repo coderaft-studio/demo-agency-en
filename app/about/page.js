@@ -12,7 +12,7 @@ const AboutContent=dynamic(()=>import("./AboutContent"),{
 export default function AboutPage(){
   useAnimateOnScroll();
   return(
-    <>
+    <div style={{overflowX:"hidden"}}>
       <Navbar/>
       <section className="ax-hero" style={{backgroundImage:`url(${IMGS.aboutHero})`,minHeight:"50vh"}}>
         <div className="ax-hero-overlay"/>
@@ -23,6 +23,6 @@ export default function AboutPage(){
         </div>
       </section>
       <AboutContent/>
-    </>
+    </div>
   );
 }

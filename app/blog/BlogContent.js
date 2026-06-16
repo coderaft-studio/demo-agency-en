@@ -126,7 +126,7 @@ export default function BlogContent(){
   const filtered=activeTag==="All"?POSTS:POSTS.filter(p=>p.tag===activeTag);
 
   return(
-    <>
+    <div style={{overflowX:"hidden"}}>
       <section className="ax-section dark2">
         <div style={{maxWidth:"1200px",margin:"0 auto",padding:"0 24px"}}>
 
@@ -145,7 +145,7 @@ export default function BlogContent(){
           {/* Featured post */}
           {activeTag==="All"&&(
             <div className="card-in" style={{marginBottom:"48px",cursor:"pointer"}} onClick={()=>setModalPost(POSTS[0])}>
-              <div style={{borderRadius:"16px",overflow:"hidden",background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.07)",display:"grid",gridTemplateColumns:"1.4fr 1fr",transition:"all .3s"}}
+              <div className="grid grid-cols-1 md:grid-cols-2" style={{borderRadius:"16px",overflow:"hidden",background:"rgba(255,255,255,0.03)",border:"1px solid rgba(255,255,255,0.07)",transition:"all .3s"}}
                 onMouseEnter={e=>{e.currentTarget.style.borderColor="rgba(99,102,241,0.3)";}}
                 onMouseLeave={e=>{e.currentTarget.style.borderColor="rgba(255,255,255,0.07)";}}>
                 <div style={{position:"relative",minHeight:"320px",overflow:"hidden"}}>
@@ -242,6 +242,6 @@ export default function BlogContent(){
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
